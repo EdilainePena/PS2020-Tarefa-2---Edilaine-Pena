@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title><Tarefa 1></title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+  
+    <script>
+       
+        class universidade {
+            constructor(nome,end, curso){
+                this.nome = nome;
+                this.end = end;
+                this.curso = curso;
+            }
+        }
+        class curso{
+            constructor(nome, periodos, cargaHoraria, qtdAlunos){
+                this.nome = nome;
+                this.periodos = periodos;
+                this.cargaHoraria = cargaHoraria;
+                this.qtdAlunos = qtdAlunos;
+            }
+        }
+
+        class republica {
+            constructor(nome, end, anos, qtdMoradores){
+                this.nome = nome;
+                this.end = end;
+                this.anos = anos;
+                this.qtdMoradores = qtdMoradores;
+            }
+        }
+
+        class pessoa{
+            constructor(nome, age){
+                this.nome = nome;
+                this.age = age;
+            }
+        }
+
+        class bebida{
+            constructor(nome, preco, qtdDisponivel){
+                this.nome = nome;
+                this.preco = preco;
+                this.qtdDisponivel = qtdDisponivel;    
+            }
+        }
+
+        class pedido{
+            constructor(iD, garcon, cliente, bebida, precoBebida){
+                this.iD = iD;
+                this.garcon = garcon;
+                this.cliente = [];
+                this.bebida = [];
+                this.precoBebida = [];
+            }            
+        }
+
+        
+        pessoa0 = new pessoa("Pedro", 20);
+        pessoa1 = new pessoa("Ana", 17);
+        pessoa2 = new pessoa("Paulo", 23);
+        pessoa3 = new pessoa("Armando", 17);
+        garcon0 = new pessoa("André", 30);
+        curso0 = new curso("Enguenharia da Computaçao", 10, 3630, 40);
+        universidade0 = new universidade("UFOP", "Joao Monlevade", curso0.nome);     
+        republica0 = new republica("Orfanato", "Av Wilson Alvarenga - JM", 10, 5);
+        bebida0 = new bebida("Corona0", 10, 200);
+        bebida1 = new bebida("Corona1", 12, 200);
+        pedido0 = new pedido("0000", garcon0.nome, pessoa0.nome, bebida0.nome, bebida0.preco);
+        pedido0 = new pedido("0000", garcon0.nome, pessoa0.nome, bebida0.nome, bebida1.preco);
+        
+        cliente = [pessoa0, pessoa1, pessoa2, pessoa3];
+
+        console.log(pessoa0);
+        console.log(garcon0);
+        console.log(curso0);
+        console.log(republica0);
+        console.log(bebida0);
+        console.log(pedido0);
+        console.log(universidade0);
+       
+        garcon0.events = {
+            checarIDs: function (nome) {
+                var i=0;             
+                while (i < cliente.length) {
+                    if(cliente[i].nome == nome){
+                        if(cliente[i].age >= 18){
+                            console.log(cliente[i].nome, "pode tomar cerveja");
+                            break;
+                        }else{
+                            console.log(cliente[i].nome, "vai tomar coca-cola")
+                            break;
+                        }
+                    }
+                    i++;
+                    if(i == cliente.length){ //verifica se a lista foi pecorrida sem encontrar nenhum cliente
+                        console.log("Cliente não encontrado!");
+                    }
+                }
+            }
+        }
+        pedido0.events = {
+            calcularTotal: function(){
+                var i = 0;
+                valortotal = 0;                    
+                while(i < pedido0.precoBebida.length){
+                    valortotal += pedido0.precoBebida[i];
+                    i++;
+                }
+                console.log("A conta deu R$",valortotal,"galerinha.");
+            }            
+        }
+        pedido0.events = {
+            calcularIndividual: function(){
+                valortotal = garcon0.events.calcularTotal();                   
+                valorIndividual = valortotal/pedido0.cliente.length;
+                console.log("A conta deu R$",valorIndividual,"para cada um.");
+            }            
+        }
+        garcon0.events.checarIDs("Ana");
+        
+        garcon0.events.calcularTotal();
+        garcon0.events.calcularIndividual();
+
+        
+    
+
+    </script>  
+
+</body>
+
+</html>
